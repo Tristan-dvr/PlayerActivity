@@ -10,6 +10,8 @@ namespace PlayerActivity.ActivityPatches
         [HarmonyPatch(typeof(ConsoleCommand), nameof(ConsoleCommand.RunAction))]
         private static void ConsoleCommand_RunAction(ConsoleCommand __instance, ConsoleEventArgs args)
         {
+            if (ZNet.instance.IsDedicated()) return;
+
             ActivityLog.AddLogWithPlayerPosition($"Command {args.FullLine}");
         }
 
@@ -17,6 +19,8 @@ namespace PlayerActivity.ActivityPatches
         [HarmonyPatch(typeof(ZNet), nameof(ZNet.RemoteCommand))]
         private static void ZNet_RemoteCommand(string command)
         {
+            if (ZNet.instance.IsDedicated()) return;
+
             ActivityLog.AddLogWithPlayerPosition($"Command remote {command}");
         }
     }

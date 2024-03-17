@@ -9,6 +9,8 @@ namespace PlayerActivity.ActivityPatches
         [HarmonyPrefix, HarmonyPatch(typeof(Game), nameof(Game.Shutdown))]
         private static void Game_Shutdown()
         {
+            if (ZNet.instance.IsDedicated()) return;
+
             ActivityLog.AddLogWithPlayerPosition("Disconnect");
         }
     }

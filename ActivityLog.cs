@@ -1,12 +1,9 @@
-﻿using System.Text;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PlayerActivity
 {
     public static class ActivityLog
     {
-        private static StringBuilder _builder = new StringBuilder();
-
         private static ActivityLogger _logger => ActivityLogger.Instance;
 
         public static void AddLog(string log)
@@ -16,20 +13,19 @@ namespace PlayerActivity
 
         public static void AddLog(string log, Vector3 position)
         {
-            _builder.Clear();
-            _builder.Append(position.ToPresentableString());
-            _builder.Append(' ');
-            _builder.Append(log);
-            _logger.AddLog(_builder.ToString());
+            _logger.AddLog(string.Format("{0} {1}", position.ToPresentableString(), log));
         }
 
         public static void AddLogWithPosition(string log, Component component)
         {
-            _builder.Clear();
-            _builder.Append(component.transform.position.ToPresentableString());
-            _builder.Append(' ');
-            _builder.Append(log);
-            _logger.AddLog(_builder.ToString());
+            if (component != null)
+            {
+                AddLog(log, component.transform.position);
+            }
+            else
+            {
+                AddLog(log);
+            }
         }
 
         public static void AddLogWithPlayerPosition(string log)

@@ -13,7 +13,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!_repairing || !__result) return;
 
-            ActivityLog.AddLogWithPosition($"Repair {Utils.GetPrefabName(__instance.gameObject)}", __instance);
+            ActivityLog.AddLogWithPosition($"Repair building {Utils.GetPrefabName(__instance.gameObject)}", __instance);
         }
 
         [HarmonyPatch(typeof(Player), nameof(Player.Repair))]

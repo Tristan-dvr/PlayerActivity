@@ -13,7 +13,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!__result || !_repairing) return;
 
-            ActivityLog.AddLogWithPlayerPosition($"Repair {item.ToPresentableString()}");
+            ActivityLog.AddLogWithPlayerPosition($"Repair item {item.ToPresentableString()}");
         }
 
         [HarmonyPatch(typeof(InventoryGui), nameof(InventoryGui.RepairOneItem))]
