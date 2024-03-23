@@ -75,6 +75,8 @@
   <ItemGroup>
     <Compile Include="ActivityLog.cs" />
     <Compile Include="ActivityLogger.cs" />
+    <Compile Include="ActivityPatches\CraftPatches.cs" />
+    <Compile Include="ActivityPatches\CreateTombStonePatch.cs" />
     <Compile Include="ActivityPatches\DisconnectPatch.cs" />
     <Compile Include="ActivityPatches\PickupPatches.cs" />
     <Compile Include="ActivityPatches\RepairBuildingPatches.cs" />

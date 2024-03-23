@@ -10,7 +10,7 @@ namespace PlayerActivity
     {
         private const string Guid = "org.tristan.playeractivity";
         public const string Name = "Player Activity";
-        public const string Version = "1.1.0";
+        public const string Version = "1.1.1";
 
         private void Awake()
         {

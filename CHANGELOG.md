@@ -1,2 +1,6 @@
+- 1.1.1
+  - Removed Attack event
+  - Grave event updated - it contains grave position instead of player position now
+  - Fixed incompatibility with InfinityHammer (thanks MadBomG for report)
 - 1.1.0
   - Public release

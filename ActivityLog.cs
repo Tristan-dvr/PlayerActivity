@@ -8,12 +8,14 @@ namespace PlayerActivity
 
         public static void AddLog(string log)
         {
+            if (_logger == null) return;
+
             _logger.AddLog(log);
         }
 
         public static void AddLog(string log, Vector3 position)
         {
-            _logger.AddLog(string.Format("{0} {1}", position.ToPresentableString(), log));
+            AddLog(string.Format("{0} {1}", position.ToPresentableString(), log));
         }
 
         public static void AddLogWithPosition(string log, Component component)

@@ -23,7 +23,6 @@ The mod is currently monitoring the following actions
 | Consume         |                                   Consumption of an item                                    |                       inventory name, item data, player position                       |
 | Craft           |                                      Crafting an item                                       |                               item data, player position                               |
 | Repair item     |                             Repairing an item in the inventory                              |                               item data, player position                               |
-| Attack          |          Swing a weapon / tool / bomb or something else that may be in your hands           |                         primary or secondary, player position                          |
 | Dodge           |                                           Evasion                                           |                                    player position                                     |
 | Teleport        |                                        Teleportation                                        |                            target position, player position                            |
 | Damage          |        Dealing damage to a player, creature, building, or other destructible object         |                       target name, damage value, target position                       |
@@ -39,7 +38,7 @@ The mod is currently monitoring the following actions
 | Text            |                      Changing the text (animal name, portal tag, etc.)                      |                         object name, new text, object position                         |
 | MoveAll         |                            Move the entire inventory to another                             |                inventory names (from, to), items data, player position                 |
 | Move            |                        Moving an item from one inventory to another                         |                 inventory names (from, to), item data, player position                 |
-| Move to grave   |                      Move the player's inventory to the grave at death                      |             items data in grave, items data in inventory, player position              |
+| Grave           |                      Move the player's inventory to the grave at death                      |             items data in grave, items data in inventory, grave position               |
 | Ping            |                            Periodically saves the player's ping                             |                              ping value, player position                               |
 | Disconnected    |                               Player disconnected from server                               |                          player position (if player is alive)                          |
 | Command         |                          Calling a command in the console or chat                           |                             command text, player position                              |
