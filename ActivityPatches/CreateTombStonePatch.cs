@@ -6,7 +6,7 @@ namespace PlayerActivity.ActivityPatches
     [HarmonyPatch]
     class CreateTombStonePatch
     {
-        [HarmonyPatch(typeof(TombStone), nameof(TombStone.Setup))]
+        [HarmonyPostfix, HarmonyPatch(typeof(TombStone), nameof(TombStone.Setup))]
         private static void TombStone_Setup(TombStone __instance)
         {
             var player = Player.m_localPlayer;

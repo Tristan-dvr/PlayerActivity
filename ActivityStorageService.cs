@@ -9,11 +9,14 @@ namespace PlayerActivity
     {
         public const string LogsRpc = "RPC_PlayerActivityLogs";
 
+        internal static ActivityStorageService Instance { get; private set; }
+
         private IDisposable _writerThread;
         private ConcurrentDictionary<string, ConcurrentQueue<string>> _logsToWrite = new ConcurrentDictionary<string, ConcurrentQueue<string>>();
 
         private void Start()
         {
+            Instance = this;
             ZRoutedRpc.instance.Register<ZPackage>(LogsRpc, OnPlayerLogsReceived);
 
             _writerThread = ThreadingUtil.RunPeriodicalInSingleThread(WriteQueuedLogsToDisk, 500);
@@ -35,7 +38,7 @@ namespace PlayerActivity
                 AppendPlayerLogs(steamId, package.ReadString());
         }
 
-        private void AppendPlayerLogs(string steamId, string message)
+        internal void AppendPlayerLogs(string steamId, string message)
         {
             var root = Utils.GetSaveDataPath(FileHelpers.FileSource.Local);
             var filePath = Path.Combine(root, 

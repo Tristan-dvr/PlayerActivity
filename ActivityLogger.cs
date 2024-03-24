@@ -26,7 +26,7 @@ namespace PlayerActivity
             if (ZNet.instance.IsDedicated()) return;
 
             Log.Debug(log);
-            log = FormatLog(log);
+            log = ActivityLoggerUtil.AddDateToLog(log);
 
             _logsQueue.Enqueue(log);
         }
@@ -52,11 +52,6 @@ namespace PlayerActivity
             if (_logsQueue.Count < LogsPackageCount) return;
 
             Flush();
-        }
-
-        private string FormatLog(string log)
-        {
-            return string.Format("[{0}] {1}", ActivityLoggerUtil.GetCurrentDateText(), log);
         }
     }
 }

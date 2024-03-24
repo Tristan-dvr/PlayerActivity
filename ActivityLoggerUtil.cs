@@ -52,6 +52,16 @@ namespace PlayerActivity
             _builder.AppendFormat("{0}:{1:0.0} ", name, damage);
         }
 
+        public static string AddDateToLog(string log)
+        {
+            return string.Format("[{0}] {1}", GetCurrentDateText(), log);
+        }
+
+        public static string FormatLog(string log, Vector3 position)
+        {
+            return string.Format("{0} {1}", position.ToPresentableString(), log);
+        }
+
         public static string GetCurrentDateText(string format = DefaultDateFormat)
         {
             return DateTime.UtcNow.ToString(format, CultureInfo.InvariantCulture);

@@ -1,3 +1,8 @@
+- 1.1.2
+  - Completely removed Attack event
+  - Added Connected event - when player connected to server
+  - Connected and Disconnected events are sent by server for better reliability 
+  - Fixed grave event
 - 1.1.1
   - Removed Attack event
   - Grave event updated - it contains grave position instead of player position now

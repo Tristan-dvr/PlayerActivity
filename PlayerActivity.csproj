@@ -77,7 +77,8 @@
     <Compile Include="ActivityLogger.cs" />
     <Compile Include="ActivityPatches\CraftPatches.cs" />
     <Compile Include="ActivityPatches\CreateTombStonePatch.cs" />
-    <Compile Include="ActivityPatches\DisconnectPatch.cs" />
+    <Compile Include="ActivityPatches\ServerPatches.cs" />
+    <Compile Include="ActivityPatches\DodgePatches.cs" />
     <Compile Include="ActivityPatches\PickupPatches.cs" />
     <Compile Include="ActivityPatches\RepairBuildingPatches.cs" />
     <Compile Include="ActivityPatches\RepairItemPatches.cs" />

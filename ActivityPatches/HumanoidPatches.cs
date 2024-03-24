@@ -6,15 +6,6 @@ namespace PlayerActivity.ActivityPatches
     [HarmonyPatch(typeof(Humanoid))]
     class HumanoidPatches
     {
-        [HarmonyPostfix]
-        [HarmonyPatch(nameof(Humanoid.StartAttack))]
-        private static void Humanoid_StartAttack(Humanoid __instance, bool secondaryAttack, ref bool __result)
-        {
-            if (!__result || !CheckIsLocalPlayer(__instance)) return;
-
-            ActivityLog.AddLogWithPosition($"Attack secondary:{secondaryAttack}", __instance);
-        }
-
         [HarmonyFinalizer]
         [HarmonyPatch(nameof(Humanoid.EquipItem))]
         private static void Humanoid_EquipItem(Humanoid __instance, ItemDrop.ItemData item, ref bool __result)

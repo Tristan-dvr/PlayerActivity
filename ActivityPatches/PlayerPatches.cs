@@ -7,8 +7,6 @@ namespace PlayerActivity.ActivityPatches
     [HarmonyPatch(typeof(Player))]
     public class PlayerPatches
     {
-        private static bool _inDodge = false;
-
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Player.OnSpawned))]
         private static void Player_OnSpawned(Player __instance)
@@ -34,28 +32,6 @@ namespace PlayerActivity.ActivityPatches
             if (!__result || !CheckIsLocalPlayer(__instance)) return;
 
             ActivityLog.AddLogWithPosition($"Teleport distant:{distantTeleport} to:{pos.ToPresentableString()}", __instance);
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(nameof(Player.UpdateDodge))]
-        private static void Player_UpdateDodge_Prefix(Player __instance)
-        {
-            if (!CheckIsLocalPlayer(__instance)) return;
-
-            _inDodge = __instance.InDodge();
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(nameof(Player.UpdateDodge))]
-        private static void Player_UpdateDodge_Postfix(Player __instance)
-        {
-            if (!CheckIsLocalPlayer(__instance)) return;
-
-            if (!_inDodge && __instance.InDodge())
-            {
-                ActivityLog.AddLogWithPosition("Dodge", __instance);
-            }
-            _inDodge = __instance.InDodge();
         }
     }
 }

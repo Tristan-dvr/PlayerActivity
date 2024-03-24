@@ -18,7 +18,7 @@ The mod is currently monitoring the following actions
 | _Action_    |                                      _When it appears_                                      |                                      _Parameters_                                      |
 |-----------------|:-------------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
 | Spawned         |                                 Player spawned in the world                                 |                        player name, player id, player position                         |
-| Inventory       |                          Periodically saves the player's inventory                          |                items data (name, quality, count etc.), player position                 |
+| Inventory       |                          Player spawned and then every 10 minutes                           |                items data (name, quality, count etc.), player position                 |
 | Equip, Unequip  |                                Putting on/taking off an item                                |                               item data, player position                               |
 | Consume         |                                   Consumption of an item                                    |                       inventory name, item data, player position                       |
 | Craft           |                                      Crafting an item                                       |                               item data, player position                               |
@@ -26,8 +26,8 @@ The mod is currently monitoring the following actions
 | Dodge           |                                           Evasion                                           |                                    player position                                     |
 | Teleport        |                                        Teleportation                                        |                            target position, player position                            |
 | Damage          |        Dealing damage to a player, creature, building, or other destructible object         |                       target name, damage value, target position                       |
-| Damaged         |                                 Taking damage by the player                                 |                              attacker name, damage value                               |
-| Dead            |                                       Player is dead                                        |                                     attacker name                                      |
+| Damaged         |                                 Taking damage by the player                                 |                              attacker name, damage value, player position              |
+| Dead            |                                       Player is dead                                        |                                     attacker name, player position                     |
 | Pickup          |                             Collecting an item from the ground                              |                                item data, item position                                |
 | Drop            |                           Throwing an item out of inventory/chest                           |                       inventory name, item data, player position                       |
 | Place           |                           Creating a building (or terrain change)                           |                            building name, building position                            |
@@ -38,9 +38,10 @@ The mod is currently monitoring the following actions
 | Text            |                      Changing the text (animal name, portal tag, etc.)                      |                         object name, new text, object position                         |
 | MoveAll         |                            Move the entire inventory to another                             |                inventory names (from, to), items data, player position                 |
 | Move            |                        Moving an item from one inventory to another                         |                 inventory names (from, to), item data, player position                 |
-| Grave           |                      Move the player's inventory to the grave at death                      |             items data in grave, items data in inventory, grave position               |
-| Ping            |                            Periodically saves the player's ping                             |                              ping value, player position                               |
-| Disconnected    |                               Player disconnected from server                               |                          player position (if player is alive)                          |
+| Grave           |                      The player's grave has been created                                    |             items data in grave, items data in player inventory, grave position        |
+| Ping            |                                      Once a minute                                          |                              ping value, player position                               |
+| Connected       |                               Player connected to server                                    |                          none                                                          |
+| Disconnected    |                               Player disconnected from server                               |                          player position (if player alive)                             |
 | Command         |                          Calling a command in the console or chat                           |                             command text, player position                              |
 | Command remote  |                        Calling server command in the console or chat                        |                             command text, player position                              |
 

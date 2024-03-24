@@ -15,7 +15,7 @@ namespace PlayerActivity
 
         public static void AddLog(string log, Vector3 position)
         {
-            AddLog(string.Format("{0} {1}", position.ToPresentableString(), log));
+            AddLog(ActivityLoggerUtil.FormatLog(log, position));
         }
 
         public static void AddLogWithPosition(string log, Component component)
