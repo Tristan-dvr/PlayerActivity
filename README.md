@@ -47,6 +47,4 @@ The mod is currently monitoring the following actions
 
 </details>
 
-#### If you have any questions / bug reports / suggestions for improvement or found incompatibility with another mod, feel free to contact me in discord
-Typedef#3996
-https://discord.gg/MjQZKuB4z2
+#### If you have any questions / bug reports / suggestions for improvement or found incompatibility with another mod, feel free to contact me in discord `typedeff`
