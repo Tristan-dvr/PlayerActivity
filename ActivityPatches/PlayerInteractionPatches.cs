@@ -214,7 +214,10 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!CheckIsLocalPlayer(human)) return;
 
-            ActivityLog.AddLogWithPosition($"Interact {Utils.GetPrefabName(obj.gameObject)} result:{result} info:{info}", obj);
+            var infoText = string.IsNullOrEmpty(info) 
+                ? string.Empty 
+                : string.Format("info:{0}", info);
+            ActivityLog.AddLogWithPosition($"Interact {Utils.GetPrefabName(obj.gameObject)} result:{result} {infoText}", obj);
         }
     }
 }

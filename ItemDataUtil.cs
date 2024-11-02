@@ -5,10 +5,10 @@ namespace PlayerActivity
 {
     public static class ItemDataUtil
     {
-        const string ItemFormat = "{0} x{1} qualily:{2} crafter:{3}({4}) data:{5}";
         const string CustomDataValueFormat = "[{0}]:[{1}]";
 
         private static StringBuilder _builder = new StringBuilder();
+        private static StringBuilder _itemDataBuilder = new StringBuilder();
 
         public static string ToPresentableString(this ItemDrop.ItemData item)
         {
@@ -18,10 +18,17 @@ namespace PlayerActivity
         public static string ToPresentableString(this ItemDrop.ItemData item, int count)
         {
             var itemName = item.m_dropPrefab?.name ?? item.m_shared.m_name;
-            return string.Format(ItemFormat,
-                itemName, count, item.m_quality,
-                item.m_crafterName, item.m_crafterID,
-                ToPresentableFormat(item.m_customData));
+            _itemDataBuilder.Clear();
+            _itemDataBuilder.AppendFormat("{0} x{1} quality:{2}", itemName, count, item.m_quality);
+            if (item.m_crafterID != 0)
+            {
+                _itemDataBuilder.AppendFormat(" crafter:{0}({1})", item.m_crafterName, item.m_crafterID);
+            }
+            if (item.m_customData.Count > 0)
+            {
+                _itemDataBuilder.AppendFormat(" data:{0}", ToPresentableFormat(item.m_customData));
+            }
+            return _itemDataBuilder.ToString();
         }
 
         private static string ToPresentableFormat(Dictionary<string, string> customData)

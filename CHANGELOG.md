@@ -1,3 +1,7 @@
+- 1.1.4
+  - Updated for new game version
+- 1.1.3
+  - Empty parameter values will no longer be displayed in the log
 - 1.1.2
   - Completely removed Attack event
   - Added Connected event - when player connected to server

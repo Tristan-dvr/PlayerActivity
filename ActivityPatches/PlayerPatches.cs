@@ -18,9 +18,9 @@ namespace PlayerActivity.ActivityPatches
 
         [HarmonyPostfix]
         [HarmonyPatch(nameof(Player.PlacePiece))]
-        private static void Player_PlacePiece(Player __instance, Piece piece, ref bool __result)
+        private static void Player_PlacePiece(Player __instance, Piece piece)
         {
-            if (!__result || !CheckIsLocalPlayer(__instance)) return;
+            if (!CheckIsLocalPlayer(__instance)) return;
 
             ActivityLog.AddLog($"Place {Utils.GetPrefabName(piece.gameObject)}", __instance.m_placementGhost.transform.position);
         }
