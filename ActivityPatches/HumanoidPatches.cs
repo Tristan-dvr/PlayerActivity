@@ -12,7 +12,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (item == null || !__result || !CheckIsLocalPlayer(__instance) || !item.IsEquipable()) return;
 
-            ActivityLog.AddLogWithPosition($"Equip {item.ToPresentableString()}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Equip, item.ToPresentableString(), __instance);
         }
 
         [HarmonyPrefix]
@@ -21,7 +21,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (item == null || !CheckIsLocalPlayer(__instance) || !item.IsEquipable() || !item.m_equipped) return;
 
-            ActivityLog.AddLogWithPosition($"Unequip {item.ToPresentableString()}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Unequip, item.ToPresentableString(), __instance);
         }
 
         [HarmonyPostfix]
@@ -30,7 +30,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!__result || !CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLogWithPosition($"Drop from:{inventory.GetName()} {item.ToPresentableString(amount)}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Drop, $"from:{inventory.GetName()} {item.ToPresentableString(amount)}", __instance);
         }
     }
 }

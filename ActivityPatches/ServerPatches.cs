@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using UnityEngine;
 
 namespace PlayerActivity.ActivityPatches
 {
@@ -22,7 +23,7 @@ namespace PlayerActivity.ActivityPatches
             var steamId = peer.m_rpc.m_socket.GetHostName();
             if (peer.m_characterID != default)
             {
-                AppendServerLog(steamId, ActivityLoggerUtil.FormatLog("Disconnected", peer.GetRefPos()));
+                AppendServerLog(steamId, "Disconnected", peer.GetRefPos());
             }
             else
             {
@@ -30,10 +31,15 @@ namespace PlayerActivity.ActivityPatches
             }
         }
 
-        private static void AppendServerLog(string steamId, string log)
+        private static void AppendServerLog(string steamId, string eventName, Vector3 position = default)
         {
-            ActivityStorageService.Instance.AppendPlayerLogs(steamId,
-                ActivityLoggerUtil.AddDateToLog(log));
+            var logData = new LogData
+            {
+                eventName = eventName,
+                position = position,
+                time = ZNet.instance.GetTimeSeconds(),
+            };
+            ActivityStorageService.Instance.AppendPlayerLogs(steamId, logData);
         }
     }
 }

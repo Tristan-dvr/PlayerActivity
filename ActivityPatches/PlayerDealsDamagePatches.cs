@@ -17,7 +17,7 @@ namespace PlayerActivity.ActivityPatches
                 ? player.GetPlayerData()
                 : $"{Utils.GetPrefabName(__instance.gameObject)} lvl:{__instance.GetLevel()} tamed:{__instance.IsTamed()}";
 
-            ActivityLog.AddLogWithPosition($"Damage {name} {GetDamageLog(hit)}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Damage, $"target:{name} {GetDamageLog(hit)}", __instance);
         }
 
         [HarmonyPostfix]
@@ -96,7 +96,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!IsLocalPlayerHit(hit)) return;
 
-            ActivityLog.AddLogWithPosition($"Damage {Utils.GetPrefabName(target.gameObject)} {GetDamageLog(hit)}", target);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Damage, $"target:{Utils.GetPrefabName(target.gameObject)} {GetDamageLog(hit)}", target);
         }
 
         private static bool IsLocalPlayerHit(HitData hit)

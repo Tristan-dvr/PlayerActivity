@@ -13,7 +13,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!CheckIsLocalPlayer(__instance) || !__result || !go.TryGetComponent<ItemDrop>(out var item)) return;
 
-            ActivityLog.AddLogWithPosition($"Pickup {item.m_itemData.ToPresentableString()}", item);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Pickup, item.m_itemData.ToPresentableString(), item);
         }
     }
 }

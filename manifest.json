@@ -1,6 +1,6 @@
 {
   "name": "Player_Activity",
-  "version_number": "1.1.4",
+  "version_number": "1.2.0",
   "website_url": "https://github.com/Tristan-dvr/PlayerActivity",
   "description": "Saves a detailed history of player actions on the server.",
   "dependencies": [

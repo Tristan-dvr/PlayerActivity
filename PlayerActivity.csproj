@@ -67,8 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivityEvents.cs" />
     <Compile Include="ActivityLog.cs" />
-    <Compile Include="ActivityLogger.cs" />
     <Compile Include="ActivityPatches\CraftPatches.cs" />
     <Compile Include="ActivityPatches\CreateTombStonePatch.cs" />
     <Compile Include="ActivityPatches\ServerPatches.cs" />
@@ -85,6 +85,7 @@
     <Compile Include="Log.cs" />
     <Compile Include="ActivityPatches\PlayerDealsDamagePatches.cs" />
     <Compile Include="ActivityPatches\PlayerInteractionPatches.cs" />
+    <Compile Include="LogData.cs" />
     <Compile Include="PlayerLogger.cs" />
     <Compile Include="ActivityLoggerUtil.cs" />
     <Compile Include="ActivityPatches\PlayerPatches.cs" />
@@ -95,8 +96,14 @@
     <Compile Include="ActivityPatches\SettingTextPatches.cs" />
     <Compile Include="ThreadingUtil.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="CHANGELOG.md" />
+    <None Include="manifest.json" />
+    <None Include="README.md" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetPath) $(SolutionDir)$(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>powershell -Command "Compress-Archive -Path '$(TargetPath)', '$(ProjectDir)README.md', '$(ProjectDir)CHANGELOG.md', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png' -DestinationPath '$(ProjectDir)$(ProjectName).zip' -Force"
+</PostBuildEvent>
   </PropertyGroup>
 </Project>

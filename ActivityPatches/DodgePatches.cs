@@ -25,7 +25,7 @@ namespace PlayerActivity.ActivityPatches
 
             if (!_inDodge && __instance.InDodge())
             {
-                ActivityLog.AddLogWithPosition("Dodge", __instance);
+                ActivityLog.AddLogWithPlayerPosition(ActivityEvents.Dodge, "");
             }
             _inDodge = __instance.InDodge();
         }

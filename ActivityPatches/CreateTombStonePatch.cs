@@ -11,7 +11,7 @@ namespace PlayerActivity.ActivityPatches
         {
             var player = Player.m_localPlayer;
             var container = __instance.GetComponent<Container>();
-            ActivityLog.AddLogWithPosition($"Grave items:\n{GetContainerData(container.GetInventory())}\nplayer:\n{GetContainerData(player.GetInventory())}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Grave, $"items:\n{GetContainerData(container.GetInventory())}\nplayer:\n{GetContainerData(player.GetInventory())}", __instance);
         }
     }
 }

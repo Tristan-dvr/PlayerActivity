@@ -12,7 +12,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (ZNet.instance.IsDedicated()) return;
 
-            ActivityLog.AddLogWithPlayerPosition($"Command {args.FullLine}");
+            ActivityLog.AddLogWithPlayerPosition(ActivityEvents.Command, args.FullLine);
         }
 
         [HarmonyPrefix]
@@ -21,7 +21,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (ZNet.instance.IsDedicated()) return;
 
-            ActivityLog.AddLogWithPlayerPosition($"Command remote {command}");
+            ActivityLog.AddLogWithPlayerPosition(ActivityEvents.CommandRemote, command);
         }
     }
 }

@@ -35,7 +35,7 @@ namespace PlayerActivity.ActivityPatches
 
         private static void AddSetTextLog(Component obj, string text)
         {
-            ActivityLog.AddLogWithPosition($"Text target:{Utils.GetPrefabName(obj.gameObject)} text:{text}", obj);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Text, $"target:{Utils.GetPrefabName(obj.gameObject)} text:{text}", obj);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLogWithPosition($"Spawned {__instance.GetPlayerData()}", __instance);
+            ActivityLog.AddLogWithPlayerPosition(ActivityEvents.Spawned, __instance.GetPlayerData());
         }
 
         [HarmonyPostfix]
@@ -22,7 +22,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLog($"Place {Utils.GetPrefabName(piece.gameObject)}", __instance.m_placementGhost.transform.position);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Place, Utils.GetPrefabName(piece.gameObject), __instance.m_placementGhost);
         }
 
         [HarmonyPostfix]
@@ -31,7 +31,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!__result || !CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLogWithPosition($"Teleport distant:{distantTeleport} to:{pos.ToPresentableString()}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Teleport, $"distant:{distantTeleport} to:{pos.ToPresentableString()}", __instance);
         }
     }
 }

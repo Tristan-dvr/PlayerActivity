@@ -4,42 +4,33 @@ namespace PlayerActivity
 {
     public static class ActivityLog
     {
-        private static ActivityLogger _logger => ActivityLogger.Instance;
-
-        public static void AddLog(string log)
+        public static void AddLogWithPosition(string eventName, string parameters, Component component)
         {
-            if (_logger == null) return;
-
-            _logger.AddLog(log);
+            AddLogWithPosition(eventName, parameters, component != null ? component.transform.position : default);
         }
 
-        public static void AddLog(string log, Vector3 position)
+        public static void AddLogWithPosition(string eventName, string parameters, GameObject gameObject)
         {
-            AddLog(ActivityLoggerUtil.FormatLog(log, position));
+            AddLogWithPosition(eventName, parameters, gameObject != null ? gameObject.transform.position : default);
         }
 
-        public static void AddLogWithPosition(string log, Component component)
+        public static void AddLogWithPlayerPosition(string eventName, string parameters)
         {
-            if (component != null)
-            {
-                AddLog(log, component.transform.position);
-            }
-            else
-            {
-                AddLog(log);
-            }
+            AddLogWithPosition(eventName, parameters, Player.m_localPlayer);
         }
 
-        public static void AddLogWithPlayerPosition(string log)
+        public static void AddLogWithPosition(string eventName, string parameters, Vector3 position)
         {
-            if (Player.m_localPlayer != null)
+            var log = new LogData
             {
-                AddLogWithPosition(log, Player.m_localPlayer);
-            }
-            else
-            {
-                AddLog(log);
-            }
+                eventName = eventName,
+                time = ZNet.instance.GetTimeSeconds(),
+                parameters = parameters,
+                position = position,
+            };
+
+            Log.Debug(log);
+            ZRoutedRpc.instance.InvokeRoutedRPC(ActivityStorageService.LogRpc, log);
         }
     }
 }

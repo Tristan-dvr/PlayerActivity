@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using HarmonyLib;
 using System.Reflection;
-using static PlayerActivity.ActivityLoggerUtil;
 
 namespace PlayerActivity
 {
@@ -10,7 +9,7 @@ namespace PlayerActivity
     {
         private const string Guid = "org.tristan.playeractivity";
         public const string Name = "Player Activity";
-        public const string Version = "1.1.4";
+        public const string Version = "1.2.0";
 
         private void Awake()
         {
@@ -21,13 +20,9 @@ namespace PlayerActivity
         [HarmonyPatch]
         private class InitializationPatch
         {
-            private static ActivityLogger _logger;
-
             [HarmonyPostfix, HarmonyPatch(typeof(Game), nameof(Game.Start))]
             private static void Game_Start(Game __instance)
             {
-                _logger = __instance.gameObject.AddComponent<ActivityLogger>();
-
                 if (!ZNet.instance.IsServer()) return;
 
                 __instance.gameObject.AddComponent<ActivityStorageService>();
@@ -37,21 +32,6 @@ namespace PlayerActivity
             private static void Player_SetLocalPlayer(Player __instance)
             {
                 __instance.gameObject.AddComponent<PlayerLogger>();
-            }
-
-            [HarmonyPriority(Priority.Last)]
-            [HarmonyPrefix, HarmonyPatch(typeof(Game), nameof(Game.Shutdown))]
-            private static void Game_Shutdown()
-            {
-                _logger.Flush();
-            }
-
-            [HarmonyFinalizer, HarmonyPatch(typeof(Player), nameof(Player.OnDeath))]
-            private static void Player_OnDeath(Player __instance)
-            {
-                if (!CheckIsLocalPlayer(__instance)) return;
-
-                _logger.Flush();
             }
         }
     }

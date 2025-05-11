@@ -36,7 +36,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!__result || _piece == null || !CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLog($"Remove {_piece.name}", _piece.positon);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Remove, _piece.name, _piece.positon);
 
             _piece = null;
         }

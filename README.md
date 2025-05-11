@@ -36,6 +36,7 @@ The mod is currently monitoring the following actions
 | Interact        |            Interaction with an interactive object (door, ward, chest, bed, etc.)            | object name, object position, optional information (ex. name of the owner of the ward) |
 | Use             | Using an item from the inventory with an object in the world (ex. adding fuel to the stove) |                        object name, item data, object position                         |
 | Text            |                      Changing the text (animal name, portal tag, etc.)                      |                         object name, new text, object position                         |
+| StackAll        |                            Stack items from players inventory to container                  |                inventory names (from, to), items data, player position                 |
 | MoveAll         |                            Move the entire inventory to another                             |                inventory names (from, to), items data, player position                 |
 | Move            |                        Moving an item from one inventory to another                         |                 inventory names (from, to), item data, player position                 |
 | Grave           |                      The player's grave has been created                                    |             items data in grave, items data in player inventory, grave position        |

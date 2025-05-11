@@ -5,10 +5,8 @@ namespace PlayerActivity
 {
     public static class ItemDataUtil
     {
-        const string CustomDataValueFormat = "[{0}]:[{1}]";
-
-        private static StringBuilder _builder = new StringBuilder();
-        private static StringBuilder _itemDataBuilder = new StringBuilder();
+        private static readonly StringBuilder _builder = new StringBuilder();
+        private static readonly StringBuilder _itemDataBuilder = new StringBuilder();
 
         public static string ToPresentableString(this ItemDrop.ItemData item)
         {
@@ -39,7 +37,7 @@ namespace PlayerActivity
             {
                 if (appendWhiteSpace) _builder.Append(", ");
 
-                _builder.AppendFormat(CustomDataValueFormat, pair.Key, pair.Value);
+                _builder.AppendFormat("[{0}]:[{1}]", pair.Key, pair.Value);
 
                 appendWhiteSpace = true;
             }

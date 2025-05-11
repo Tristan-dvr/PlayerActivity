@@ -217,7 +217,7 @@ namespace PlayerActivity.ActivityPatches
             var infoText = string.IsNullOrEmpty(info) 
                 ? string.Empty 
                 : string.Format("info:{0}", info);
-            ActivityLog.AddLogWithPosition($"Interact {Utils.GetPrefabName(obj.gameObject)} result:{result} {infoText}", obj);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Interact, $"{Utils.GetPrefabName(obj.gameObject)} result:{result} {infoText}", obj);
         }
     }
 }

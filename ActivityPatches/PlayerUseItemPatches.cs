@@ -13,7 +13,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!CheckIsLocalPlayer(__instance)) return;
 
-            ActivityLog.AddLogWithPosition($"Consume {item.ToPresentableString()} inventory:{inventory?.GetName()}", __instance);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Consume, $"{item.ToPresentableString()} inventory:{inventory?.GetName()}", __instance);
         }
 
         [HarmonyPostfix]
@@ -69,7 +69,7 @@ namespace PlayerActivity.ActivityPatches
         {
             if (!result || !CheckIsLocalPlayer(humanoid)) return;
 
-            ActivityLog.AddLogWithPosition($"Use target:{Utils.GetPrefabName(obj.gameObject)} item:{item.ToPresentableString()}", obj);
+            ActivityLog.AddLogWithPosition(ActivityEvents.Use, $"target:{Utils.GetPrefabName(obj.gameObject)} item:{item.ToPresentableString()}", obj);
         }
     }
 }

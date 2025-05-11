@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Globalization;
 using System.IO;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace PlayerActivity
 {
     class ActivityStorageService : MonoBehaviour
     {
-        public const string LogsRpc = "RPC_PlayerActivityLogs";
+        public const string LogRpc = "RPC_PlayerActivityLog";
 
         internal static ActivityStorageService Instance { get; private set; }
 
@@ -17,7 +18,7 @@ namespace PlayerActivity
         private void Start()
         {
             Instance = this;
-            ZRoutedRpc.instance.Register<ZPackage>(LogsRpc, OnPlayerLogsReceived);
+            ZRoutedRpc.instance.Register<LogData>(LogRpc, OnPlayerLogsReceived);
 
             _writerThread = ThreadingUtil.RunPeriodicalInSingleThread(WriteQueuedLogsToDisk, 500);
             Log.Info("Storage initialized");
@@ -28,29 +29,28 @@ namespace PlayerActivity
             _writerThread?.Dispose();
         }
 
-        private void OnPlayerLogsReceived(long uid, ZPackage package)
+        private void OnPlayerLogsReceived(long uid, LogData logData)
         {
             var peer = ZNet.instance.GetPeer(uid);
             var steamId = peer?.m_socket.GetHostName() ?? "local";
 
-            var logsCount = package.ReadInt();
-            for (int i = 0; i < logsCount; i++)
-                AppendPlayerLogs(steamId, package.ReadString());
+            AppendPlayerLogs(steamId, logData);
         }
 
-        internal void AppendPlayerLogs(string steamId, string message)
+        internal void AppendPlayerLogs(string steamId, LogData logData)
         {
             var root = Utils.GetSaveDataPath(FileHelpers.FileSource.Local);
             var filePath = Path.Combine(root, 
                 Plugin.Name,
-                ActivityLoggerUtil.GetCurrentDateText("yyyy_MM_dd"),
+                GetCurrentDateFolderPath(),
                 $"{steamId}.log");
             if (!_logsToWrite.TryGetValue(filePath, out var queue))
             {
-                queue = new ConcurrentQueue<string>();
-                _logsToWrite.AddOrUpdate(filePath, queue, (path, q2) => _logsToWrite[path]);
+                _logsToWrite.AddOrUpdate(filePath, new ConcurrentQueue<string>(), (path, q2) => _logsToWrite[path]);
+                queue = _logsToWrite[filePath];
             }
-            queue.Enqueue(message);
+            var text = FormatLogToDisk(logData);
+            queue.Enqueue(text);
         }
 
         private void WriteQueuedLogsToDisk()
@@ -67,9 +67,28 @@ namespace PlayerActivity
                 using (var writer = File.AppendText(logEntity.Key))
                 {
                     while (logEntity.Value.TryDequeue(out var log))
+                    {
                         writer.WriteLine(log);
+                    }
                 }
             }
+        }
+
+        private string FormatLogToDisk(LogData logData)
+        {
+            var date = CalculateRelativeDate(ZNet.instance.GetTimeSeconds(), logData.time);
+            return $"[{date.ToString("G", CultureInfo.InvariantCulture)}] {logData}";
+        }
+
+        private static DateTime CalculateRelativeDate(double currentWorldTime, double lastWorldTime)
+        {
+            var now = DateTime.UtcNow;
+            var relativeSeconds = currentWorldTime - lastWorldTime;
+            return now.Subtract(TimeSpan.FromSeconds(relativeSeconds));
+        }
+        private static string GetCurrentDateFolderPath()
+        {
+            return DateTime.UtcNow.ToString("yyyy_MM_dd", CultureInfo.InvariantCulture);
         }
     }
 }
