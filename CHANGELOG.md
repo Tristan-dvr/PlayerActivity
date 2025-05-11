@@ -1,6 +1,6 @@
 ### 1.2.0
 - Added StackAll event
-- Fixed Craft event
+- Fixed Craft event, now also compatible with AAA Crafting mod
 ### 1.1.4
 - Updated for new game version
 ### 1.1.3
