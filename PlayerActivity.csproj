@@ -77,6 +77,7 @@
     <Compile Include="ActivityPatches\RepairBuildingPatches.cs" />
     <Compile Include="ActivityPatches\RepairItemPatches.cs" />
     <Compile Include="ActivityPatches\TerminalPatches.cs" />
+    <Compile Include="ActivityPatches\TrinketActivationPatch.cs" />
     <Compile Include="ActivityStorageService.cs" />
     <Compile Include="ActivityPatches\DamagePatches.cs" />
     <Compile Include="ActivityPatches\HumanoidPatches.cs" />

@@ -41,6 +41,7 @@ The mod is currently monitoring the following actions
 | Move            |                        Moving an item from one inventory to another                         |                 inventory names (from, to), item data, player position                 |
 | Grave           |                      The player's grave has been created                                    |             items data in grave, items data in player inventory, grave position        |
 | Ping            |                                      Once a minute                                          |                              ping value, player position                               |
+| TrinketActivated|                            Player activates trinket ability                                |                               trinket data, player position                            |
 | Connected       |                               Player connected to server                                    |                          none                                                          |
 | Disconnected    |                               Player disconnected from server                               |                          player position (if player alive)                             |
 | Command         |                          Calling a command in the console or chat                           |                             command text, player position                              |

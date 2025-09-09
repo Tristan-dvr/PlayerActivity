@@ -1,3 +1,6 @@
+### 1.2.1
+- Added TrinketActivated event - tracks when player activates trinket abilities
+- Improved interaction logging with Feast objects
 ### 1.2.0
 - Added StackAll event
 - Fixed Craft event, now also compatible with AAA Crafting mod
