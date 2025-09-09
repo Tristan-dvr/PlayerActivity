@@ -103,7 +103,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>powershell -Command "Compress-Archive -Path '$(TargetPath)', '$(ProjectDir)README.md', '$(ProjectDir)CHANGELOG.md', '$(ProjectDir)manifest.json', '$(ProjectDir)icon.png' -DestinationPath '$(ProjectDir)$(ProjectName).zip' -Force"
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

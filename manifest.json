@@ -1,9 +1,9 @@
 {
-  "name": "Player_Activity",
-  "version_number": "1.2.0",
-  "website_url": "https://github.com/Tristan-dvr/PlayerActivity",
-  "description": "Saves a detailed history of player actions on the server.",
-  "dependencies": [
-    "denikson-BepInExPack_Valheim-5.4.2202"
-  ]
+    "name":  "Player_Activity",
+    "version_number":  "1.2.1",
+    "website_url":  "https://github.com/Tristan-dvr/PlayerActivity",
+    "description":  "Saves a detailed history of player actions on the server.",
+    "dependencies":  [
+                         "denikson-BepInExPack_Valheim-5.4.2202"
+                     ]
 }
