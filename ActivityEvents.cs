@@ -30,5 +30,6 @@
         public const string Ping = nameof(Ping);
         public const string Inventory = nameof(Inventory);
         public const string TrinketActivated = nameof(TrinketActivated);
+        public const string Kill = nameof(Kill);
     }
 }
